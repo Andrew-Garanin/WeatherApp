@@ -24,7 +24,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URL;
 import java.text.AttributedString;
 import java.text.SimpleDateFormat;
@@ -45,7 +48,21 @@ public class MainActivity extends AppCompatActivity {
     private TextView wind_speed;
 
 
+
     private View borders[];
+
+    public boolean isOnline() {
+        try {
+            int timeoutMs = 1500;
+            Socket sock = new Socket();
+            SocketAddress sockaddr = new InetSocketAddress("8.8.8.8", 53);
+
+            sock.connect(sockaddr, timeoutMs);
+            sock.close();
+
+            return true;
+        } catch (IOException e) { return false; }
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -121,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result){
             super.onPostExecute(result);
 
+            if(result.equals("Не удалось установить соединение с сервером.") ||
+                    result.equals("Город не найден")) {
+                temperature.setText(result);
+                return;
+            }
             try {
                 for (View itVar:borders)
                 {
@@ -144,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader reader = null;
 
             try {
+                if(!isOnline())
+                    return "Не удалось установить соединение с сервером.";
+
                 URL url = new URL(strings[0]);
                 connection=(HttpURLConnection)url.openConnection();
                 connection.connect();
@@ -162,10 +187,13 @@ public class MainActivity extends AppCompatActivity {
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            finally {
+            catch (IOException e) {
+                e.printStackTrace();
+                return "Город не найден";
+            }
+            finally
+            {
                 if(connection!=null)
                     connection.disconnect();
 
@@ -178,9 +206,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     e.printStackTrace();
                 }
-
             }
             return null;
-            }
+        }
     }
 }
