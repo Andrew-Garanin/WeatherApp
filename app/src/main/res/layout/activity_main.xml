@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_grad"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/logo"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"
+        />
+
+        <TextView
+            android:id="@+id/today"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="30sp"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="Суббота, 7 августа"
+        />
+
+        <EditText
+            android:id="@+id/user_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:layout_marginHorizontal="50sp"
+            android:layout_marginTop="100sp"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:hint="@string/hint_user_field"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/white"
+        />
+
+        <Button
+            android:id="@+id/main_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_field"
+            android:layout_marginHorizontal="80sp"
+            android:layout_marginTop="20sp"
+            android:text="@string/main_button"
+            android:textSize="15sp"
+            android:textColor="#E0FFFF"
+            android:backgroundTint="#26C6DA"
+        />
+
+        <View style="@style/border_style.first"
+            android:id="@+id/border1"
+            android:layout_below="@+id/main_button"
+        />
+
+        <TextView style="@style/textView_style"
+            android:id="@+id/temperature"
+            android:layout_below="@+id/border1"
+            android:layout_marginHorizontal="20sp"
+        />
+
+        <View style="@style/border_style"
+            android:id="@+id/border2"
+            android:layout_below="@+id/border1"
+        />
+
+        <TextView style="@style/textView_style"
+            android:id="@+id/feels_like"
+            android:layout_below="@+id/border2"
+            android:layout_marginHorizontal="20sp"
+        />
+
+        <View style="@style/border_style"
+            android:id="@+id/border3"
+            android:layout_below="@+id/border2"
+        />
+
+        <TextView style="@style/textView_style"
+            android:id="@+id/humidity"
+            android:layout_below="@+id/border3"
+            android:layout_marginHorizontal="20sp"
+        />
+
+        <View style="@style/border_style"
+            android:id="@+id/border4"
+            android:layout_below="@+id/border3"
+        />
+
+        <TextView style="@style/textView_style"
+            android:id="@+id/pressure"
+            android:layout_below="@+id/border4"
+            android:layout_marginHorizontal="20sp"
+        />
+
+        <View style="@style/border_style"
+            android:id="@+id/border5"
+            android:layout_below="@+id/border4"
+        />
+
+        <TextView style="@style/textView_style"
+            android:id="@+id/wind_speed"
+            android:layout_below="@+id/border5"
+            android:layout_marginHorizontal="20sp"
+        />
+
+        <View style="@style/border_style"
+            android:id="@+id/border6"
+            android:layout_below="@+id/border5"
+        />
+
+    </RelativeLayout>
+</ScrollView>
