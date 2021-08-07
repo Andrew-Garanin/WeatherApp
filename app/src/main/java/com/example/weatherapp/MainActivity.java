@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,12 +85,11 @@ public class MainActivity extends AppCompatActivity {
         borders[4]=findViewById(R.id.border5);
 
         // Выставление текущего дня недели и даты
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         Date date = calendar.getTime();
-        Date date1= new Date();
         today.setText(new SimpleDateFormat("EEEE", new Locale("ru")).format(date.getTime()).substring(0,1).toUpperCase()+
                 new SimpleDateFormat("EEEE", new Locale("ru")).format(date.getTime()).substring(1)+", "+
-                String.format(new Locale("ru"),"%1$te %1$tB", date1));
+                String.format(new Locale("ru"),"%1$te %1$tB", date));
 
         main_button.setOnClickListener(new View.OnClickListener() {
             @Override
