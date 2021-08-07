@@ -1,12 +1,9 @@
 package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.content.AsyncTaskLoader;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.fonts.Font;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +26,6 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URL;
-import java.text.AttributedString;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView pressure;
     private TextView wind_speed;
 
-
-
-    private View borders[];
+    private View borders[];// Разделители между полей для вывода информации
 
     public boolean isOnline() {
         try {
@@ -61,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
             sock.close();
 
             return true;
-        } catch (IOException e) { return false; }
+        } catch (IOException e){
+            return false;
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -87,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         borders[3]=findViewById(R.id.border4);
         borders[4]=findViewById(R.id.border5);
 
+        // Выставление текущего дня недели и даты
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
         Date date1= new Date();
@@ -98,16 +95,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(user_field.getText().toString().trim().equals(""))
-                    Toast.makeText(MainActivity.this, R.string.No_user_input, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.No_user_input, Toast.LENGTH_LONG).show();// Всплывающее 3х-секундное сообщение "Введите текст"
                 else
                 {
                     String city = user_field.getText().toString();
-                    String key = "4941241ed8b1fe54a6c246a56c4938e9";
-                    String url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=4941241ed8b1fe54a6c246a56c4938e9&units=metric&lang=ru";
+                    String key = "4941241ed8b1fe54a6c246a56c4938e9"; // API ключ для доступа к сранице с данными
+                    String url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+key+"&units=metric&lang=ru";
 
-                    new GetURLData().execute(url);// Проверки интернета
-                    // Check if no view has focus:
-
+                    new GetURLData().execute(url);
+                    // Check if no view has focus
+                    // Скрытие клавиатуры после ввода информации и нажатия на кнопку
                     if (view != null) {
                         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -119,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
 
     private class GetURLData extends AsyncTask<String, String, String >
     {
-        protected void onPreExecute(){
+        protected void onPreExecute(){// Блок выполняется перед доступом к сайту и получением информации
             super.onPreExecute();
+
             for (View itVar:borders)
-            {
                 itVar.setVisibility(View.INVISIBLE);
-            }
+
             temperature.setText("");
             feels_like.setText("");
             humidity.setText("");
@@ -135,19 +132,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @SuppressLint("SetTextI18n")
-        protected void onPostExecute(String result){
+        protected void onPostExecute(String result){// Блок выполняется после доступа к сайту и получения информации
             super.onPostExecute(result);
 
             if(result.equals("Не удалось установить соединение с сервером.") ||
-                    result.equals("Город не найден")) {
+                    result.equals("Город не найден.")) {
                 temperature.setText(result);
                 return;
             }
             try {
                 for (View itVar:borders)
-                {
                     itVar.setVisibility(View.VISIBLE);
-                }
 
                 JSONObject jsonObject =new JSONObject(result);
                 temperature.setText("Температура "+ jsonObject.getJSONObject("main").getDouble("temp")+" ℃");
@@ -190,13 +185,12 @@ public class MainActivity extends AppCompatActivity {
             }
             catch (IOException e) {
                 e.printStackTrace();
-                return "Город не найден";
+                return "Город не найден.";
             }
             finally
             {
                 if(connection!=null)
                     connection.disconnect();
-
                 try
                 {
                     if(reader != null)
