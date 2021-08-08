@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText user_field;
     private Button main_button;
     private TextView today;
+    private ImageButton button_about;
 
     private TextView temperature;
     private TextView feels_like;
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         user_field = findViewById(R.id.user_field);
         main_button = findViewById(R.id.main_button);
+        button_about = findViewById(R.id.button_about);
         today = findViewById(R.id.today);
 
         temperature = findViewById(R.id.temperature);
@@ -77,12 +82,13 @@ public class MainActivity extends AppCompatActivity {
         pressure = findViewById(R.id.pressure);
         wind_speed = findViewById(R.id.wind_speed);
 
-        borders = new View[5];
+        borders = new View[6];
         borders[0]=findViewById(R.id.border1);
         borders[1]=findViewById(R.id.border2);
         borders[2]=findViewById(R.id.border3);
         borders[3]=findViewById(R.id.border4);
         borders[4]=findViewById(R.id.border5);
+        borders[5]=findViewById(R.id.border6);
 
         // Выставление текущего дня недели и даты
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
@@ -103,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     String url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+key+"&units=metric&lang=ru";
 
                     new GetURLData().execute(url);
+
                     // Check if no view has focus
                     // Скрытие клавиатуры после ввода информации и нажатия на кнопку
                     if (view != null) {
@@ -112,6 +119,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        button_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openActivityAbout();
+            }
+        });
+    }
+
+    public void openActivityAbout(){
+        Intent intent = new Intent(this, ActivityAbout.class);
+        startActivity(intent);
     }
 
     private class GetURLData extends AsyncTask<String, String, String >

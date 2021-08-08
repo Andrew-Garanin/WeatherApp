@@ -4,4 +4,9 @@
     <string name="hint_user_field">Введите город</string>
     <string name="main_button">Узнать погоду</string>
     <string name="No_user_input">Введите текст</string>
+    <string name="app_description">Версия 1.0, 8 августа 2021г., сборка 1</string>
+    <string name="weather_channel"><a href="https://openweathermap.org/">The weather channel</a></string>
+    <string name="about_app">О приложении</string>
+    <string name="close">Закрыть</string>
+    <string name="info">О приложении</string>
 </resources>
