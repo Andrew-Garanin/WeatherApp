@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather App</string>
+    <string name="app_name">Weather</string>
     <string name="logo">Погода в городе</string>
     <string name="hint_user_field">Введите город</string>
     <string name="main_button">Узнать погоду</string>
