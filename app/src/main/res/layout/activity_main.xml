@@ -9,10 +9,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/background_grad"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        >
 
         <TextView
             android:id="@+id/logo"
@@ -130,13 +131,15 @@
             android:id="@+id/button_about"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/border6"
             android:layout_marginStart="4sp"
             android:layout_marginTop="10sp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/info"
             android:minHeight="48dp"
             android:src="@android:drawable/ic_menu_info_details"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
 </ScrollView>
+
