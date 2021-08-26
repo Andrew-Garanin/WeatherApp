@@ -1,3 +1,3 @@
 # WeatherApp
 ☁🌡Android-application that allows to check the weather in entered city
-![alt text](screenshots/main.png "Описание")
+<img src="https://github.com/Andrew-Garanin/WeatherApp/blob/master/screenshots/main.png" width="200" />
