@@ -4,5 +4,6 @@
 Для того чтобы создать apk-файл в Android studio необходимо нажать Build-> Build Bundle(s)/APK(s)-> Build APK(s)
 Для того чтобы установить apk- файл на эмуляторе можно просто перетащить файл .apk вашего приложения в эмулятор, 
 и он автоматически начнет установку.
+
 <img src="https://github.com/Andrew-Garanin/WeatherApp/blob/master/screenshots/main.png" width="500" height="900"/>
 <img src="https://github.com/Andrew-Garanin/WeatherApp/blob/master/screenshots/about.png" width="500" height="900"/>
